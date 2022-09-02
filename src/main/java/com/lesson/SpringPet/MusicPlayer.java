@@ -1,54 +1,23 @@
 package com.lesson.SpringPet;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+@Component
 public class MusicPlayer {
-    private Music music;
-    private String name;
-    private int volume;
-    private List<Music> musicList = new ArrayList<>();
+    private List<Music> musicList;
 
-    public MusicPlayer(){
-
-    }
-    public void setMusic(Music music){
-        this.music = music;
-    }
     //IoC
-    public MusicPlayer(Music music){
-        this.music = music;
+    public MusicPlayer(List<Music> list){
+        this.musicList = list;
     }
-    public void playMusic(){
-        System.out.println("Playing: " + music.getSong());
-    }
-    public void playAllMusic(){
-        for (Music music: musicList){
-            System.out.println(music.getSong());
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public List<Music> getMusicList() {
-        return musicList;
-    }
-
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
+    public List<Music> playMusic(){
+        Random random = new Random();
+        return List.of(musicList.get(random.nextInt(0, musicList.size())));
     }
 }

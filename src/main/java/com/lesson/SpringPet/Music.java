@@ -1,5 +1,7 @@
 package com.lesson.SpringPet;
 
+import java.util.ArrayList;
+
 public interface Music {
-    public String getSong();
+    public ArrayList<String> getSong();
 }
